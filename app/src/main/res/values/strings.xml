@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LoveCalculat</string>
+    <string name="second_name" />
+    <string name="love_calc">love_calc</string>
+    <string name="first_name">first_name</string>
+    <string name="calculate">calculate</string>
+</resources>
