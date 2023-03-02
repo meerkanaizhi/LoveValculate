@@ -1,12 +1,10 @@
 package com.example.lovecalculat
 
-import android.R
-import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lovecalculat.MainActivity.Companion.INTENT_FOR_RESULT
 import com.example.lovecalculat.databinding.ActivityResultBinding
+import com.example.lovecalculat.remote.LoveModel
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding

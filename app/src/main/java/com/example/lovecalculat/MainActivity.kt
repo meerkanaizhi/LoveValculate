@@ -4,15 +4,23 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import com.example.lovecalculat.databinding.ActivityMainBinding
+import com.example.lovecalculat.remote.LoveModel
+import com.example.lovecalculat.remote.LoveService
+import com.example.lovecalculat.viewmodel.LoveViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+
+    private val viewModel: LoveViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -27,34 +35,12 @@ class MainActivity : AppCompatActivity() {
     private fun initClickers() {
         with(binding) {
             calculateBtn.setOnClickListener {
-                RetrofitService().api.calculateLove(
-                    firstET.text.toString(),
-                    secondET.text.toString()
-                ).enqueue(object : Callback<LoveModel> {
-                    override fun onResponse(call: Call<LoveModel>, response: Response<LoveModel>) {
-                        if (response.isSuccessful) {
-                            val intent = Intent(this@MainActivity, ResultActivity::class.java)
-                            intent.putExtra(INTENT_FOR_RESULT, response.body())
-                            startActivity(intent)
-                        } else {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Что то пошло не очень",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-                        }
-                    }//$ - обозначаем, если хотим какую-то переменную перевести в  string. Если мы хотим получить персентаж. Без $ он будет читать что это просто string
-
-                    override fun onFailure(call: Call<LoveModel>, t: Throwable) {
-                        Toast.makeText(this@MainActivity, "Что то пошло не так", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-
+                viewModel.getLiveLove(firstET.text.toString(), secondET.text.toString()).
+                observe(this@MainActivity, Observer {loveModel->
+                    Log.e("ololo", "initClicker:$loveModel")
                 })
 
             }
-
         }
     }
 }
