@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: LoveViewModel by viewModels()
 
-    @Inject
-    lateinit var utils: Utils
+   // @Inject
+   // lateinit var utils: Utils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
          //       observe(this@MainActivity, Observer {loveModel->
            //         Log.e("ololo", "initClicker:$loveModel")
              //   })
-            utils.showToast(this@MainActivity)
+          //  utils.showToast(this@MainActivity)
             }
         }
     }
