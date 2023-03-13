@@ -1,5 +1,6 @@
 package com.example.lovecalculat
 
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: LoveViewModel by viewModels()
 
    // @Inject
-   // lateinit var utils: Utils
+    //lateinit var utils: Utils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +38,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initClickers() {
-        with(binding) {
+        with(binding) {historyBtn.setOnClickListener {
+            startActivity(Intent(this@MainActivity, HistoryActivity::class.java)) }
             calculateBtn.setOnClickListener {
-       //         viewModel.getLiveLove(firstET.text.toString(), secondET.text.toString()).
-         //       observe(this@MainActivity, Observer {loveModel->
-           //         Log.e("ololo", "initClicker:$loveModel")
-             //   })
-          //  utils.showToast(this@MainActivity)
+            viewModel.getLiveLove(firstET.text.toString(), secondET.text.toString())
+                    .observe(this@MainActivity, Observer { loveModel ->
+                        App.appDatabase.loveDao().insert(loveModel)
+
+                    })
             }
         }
     }

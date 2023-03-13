@@ -26,7 +26,15 @@
         android:id="@+id/calculateBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="calculate"/>
+        android:text="calculate"
+        android:textSize="30sp"/>
+
+    <Button
+        android:id="@+id/historyBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="history"
+        android:textSize="30sp"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
