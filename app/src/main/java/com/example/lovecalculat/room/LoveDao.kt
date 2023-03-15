@@ -14,4 +14,6 @@ interface LoveDao {
     @Query("SELECT * FROM love_model")
     fun getAll():List<LoveModel>
 
+
+
 }

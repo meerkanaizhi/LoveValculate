@@ -21,8 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory
                     .create(LoveApi::class.java)
             }
         }
-   @Provides
-  fun provideUtils() : Utils{
-    return Utils()
-   }
+
+
 
